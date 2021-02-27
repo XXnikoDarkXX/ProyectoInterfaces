@@ -1,5 +1,6 @@
 import controller.ControladorAñadirTarea;
 import controller.ControladorLogin;
+import controller.GestorTareas;
 import controller.PersonController;
 import java.io.IOException;
 import javafx.application.Application;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import model.Login;
 import model.Person;
 import model.Tarea;
+import repositorio.BaseDatos;
 
 public class App extends Application {
 
@@ -30,7 +32,7 @@ public class App extends Application {
           
            
           //Añadir tareas
-          var fxmlLoader = new FXMLLoader();
+         var fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/view/vistaTarea.fxml"));
             
             var controladorTarea = new ControladorAñadirTarea(new Tarea());
@@ -53,6 +55,21 @@ public class App extends Application {
             var scene = new Scene(root);
             stage.setScene(scene);
             stage.show();*/
+         
+         
+         //Ver Tareas creadas
+         /*var fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/view/gestorTareas.fxml"));
+            
+            GestorTareas gestorTareas = new GestorTareas(new BaseDatos());
+            fxmlLoader.setController(gestorTareas);
+            
+            var root = (Pane)fxmlLoader.load();
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();*/
+         
+         
           
         }
         catch(IOException exception){
