@@ -39,7 +39,10 @@ public class App extends Application {
             fxmlLoader.setController(controladorTarea);
             
             var root = (Pane)fxmlLoader.load();
+             root.setId("pane");
+             
             var scene = new Scene(root);
+             scene.getStylesheets().addAll(this.getClass().getResource("styles/fondo.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
            

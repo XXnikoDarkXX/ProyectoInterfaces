@@ -94,7 +94,7 @@ public class ControladorAñadirTarea {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Gestor de Tareas");
                     alert.setHeaderText(null);
-                    alert.setContentText("Te has logueado");
+                    alert.setContentText("Vamos a mostrar las tareas");
 
                     alert.showAndWait();
             

@@ -5,6 +5,12 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import model.Tarea;
 import repositorio.BaseDatos;
 
 /**
@@ -16,9 +22,26 @@ public class GestorTareas {
     
     
     public GestorTareas(BaseDatos baseDatos){
-        
+        this.baseDatos=baseDatos;
     }
     
-      public void initialize() {}
+    @FXML
+    private ComboBox comboTareas;
+    
+      public void initialize() {
+     ArrayList <Tarea> lista =new ArrayList<Tarea>();
+     lista=baseDatos.todasTareas();
+               comboTareas.setVisible(false);
+
+         ObservableList listaCombo = FXCollections.observableArrayList();
+         
+          for (int i = 0; i < lista.size(); i++) {
+             listaCombo.add(lista.get(i).getNombreTarea());
+             
+          }
+          comboTareas.setItems(listaCombo);
+               comboTareas.setVisible(true);
+
+      }
       
 }
