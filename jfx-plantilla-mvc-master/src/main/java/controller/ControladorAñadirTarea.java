@@ -32,10 +32,12 @@ public class ControladorAñadirTarea {
 
     Tarea tarea;
     private BaseDatos baseDatos;
-
-    public ControladorAñadirTarea(Tarea tarea) {
+    private Pantalla navigation;
+    public ControladorAñadirTarea(Tarea tarea,Pantalla navigation,BaseDatos baseDatos) {
         this.tarea = tarea;
-        this.baseDatos = new BaseDatos();
+    
+        this.navigation=navigation;
+        this.baseDatos=baseDatos;
 
     }
     @FXML
@@ -51,7 +53,8 @@ public class ControladorAñadirTarea {
     @FXML
     private Button irGestorTareas;
     public void initialize() {
-    
+        
+        System.out.println("iniciado");
             /**
              * Al pulsar el boton de añadir Tarea tendremos que comprobar que los campos esten completos si no nos dara falso
              * y no podremos añadir la tarea+
@@ -67,12 +70,13 @@ public class ControladorAñadirTarea {
             }
 
             if (comprobacion) {
-
-                tarea.setNombreTarea(txtTitulo.getText());
-                tarea.setFechaTarea(fTarea.getValue().toString());
-                tarea.setContenidoTarea(txtContenido.getText());
+                 Tarea tareados=new Tarea();
+                tareados.setNombreTarea(txtTitulo.getText());
+                tareados.setFechaTarea(fTarea.getValue().toString());
+                tareados.setContenidoTarea(txtContenido.getText());
+                tarea=tareados;
                 baseDatos.AñadirTarea(tarea);
-                System.out.println("hola");
+              
                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Gestor de Tareas");
                     alert.setHeaderText(null);
@@ -89,7 +93,7 @@ public class ControladorAñadirTarea {
         });
 
           irGestorTareas.setOnAction((actionEvent) -> {
-            try {
+         
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Gestor de Tareas");
@@ -97,28 +101,20 @@ public class ControladorAñadirTarea {
                     alert.setContentText("Vamos a mostrar las tareas");
 
                     alert.showAndWait();
-            
-                    var fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/view/gestorTareas.fxml"));
-                    var gestorTareas = new GestorTareas(this.baseDatos);
-                    fxmlLoader.setController(gestorTareas);
-                    var root = (Pane) fxmlLoader.load();
-                    var scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.show();
+                        this.navigation.Navigate(ScreenEnum.GestorTareas);
+                 
               //      stage.setOnCloseRequest(e -> controladorTarea.closeWindows());
 
-                    Stage myStage = (Stage) this.btnBorrar.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                  //  Stage myStage = (Stage) this.btnBorrar.getScene().getWindow();
+                 //   myStage.close();
+             
             
-          });
-        
-    }
+         
+    });
+                  
+                  }
 
+    
     public void closeWindows() {
 
     }

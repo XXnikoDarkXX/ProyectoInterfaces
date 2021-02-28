@@ -7,6 +7,7 @@ package repositorio;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import model.Tarea;
 
@@ -46,8 +47,9 @@ public class BaseDatos {
      *
      * @param tarea que vamos a añadir a la base de datos
      */
-    public void AñadirTarea(Tarea tarea) {
-        listaTareas.put(tarea.getNombreTarea(), tarea);
+    public void AñadirTarea(Tarea tar) {
+        listaTareas.put(tar.getNombreTarea(), tar);
+        System.err.println("");
     }
 
     /**
@@ -81,8 +83,12 @@ public class BaseDatos {
      */
     public ArrayList<Tarea> todasTareas() {
         ArrayList<Tarea> lista = new ArrayList<Tarea>();
-        for (Entry<String, Tarea> entry : listaTareas.entrySet()) {
+       
+       
+ for (Map.Entry<String, Tarea> entry : listaTareas.entrySet()) {
             lista.add(entry.getValue());
+           
+            
         }
         return lista;
     }

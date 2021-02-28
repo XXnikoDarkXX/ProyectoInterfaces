@@ -23,12 +23,14 @@ import javafx.stage.Stage;
 import model.Login;
 import model.Tarea;
 
+
 /**
  *
  * @author nicoc
  */
 public class ControladorLogin {
-
+    private Pantalla navigation;
+    
     private Login login;
     @FXML
     private Button btnLogin;
@@ -42,8 +44,9 @@ public class ControladorLogin {
     /**
      * Constructor login vacio
      */
-    public ControladorLogin(Login login) {
+    public ControladorLogin(Login login,Pantalla navigation) {
         this.login = login;
+        this.navigation=navigation;
 
     }
 
@@ -54,7 +57,7 @@ public class ControladorLogin {
               //Si ponemos 
             if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
 
-                try {
+                //try {
 
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Gestor de Tareas");
@@ -62,23 +65,32 @@ public class ControladorLogin {
                     alert.setContentText("Te has logueado");
 
                     alert.showAndWait();
-            
-                    var fxmlLoader = new FXMLLoader();
+                           this.navigation.Navigate(ScreenEnum.AñadirTareas);
+
+              /*      var fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/view/vistaTarea.fxml"));
                     var controladorTarea = new ControladorAñadirTarea(new Tarea());
                     fxmlLoader.setController(controladorTarea);
+                  
                     var root = (Pane) fxmlLoader.load();
+                      
                     var scene = new Scene(root);
+
                     Stage stage = new Stage();
                     stage.setScene(scene);
+     
                     stage.show();
+            
+          
+            
+            
                     stage.setOnCloseRequest(e -> controladorTarea.closeWindows());
 
                     Stage myStage = (Stage) this.btnLogin.getScene().getWindow();
                     myStage.close();
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                }*/
 
             }else{
                 lblLogin.setText("Error!!");
