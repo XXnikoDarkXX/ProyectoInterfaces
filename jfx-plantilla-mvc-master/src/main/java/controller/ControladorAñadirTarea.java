@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -52,9 +53,22 @@ public class ControladorAñadirTarea {
     private Button btnBorrar;
     @FXML
     private Button irGestorTareas;
+    @FXML
+    private MenuItem itemAddTarea;
+    @FXML
+    private MenuItem itemVerTareas;
     public void initialize() {
+    
+       
+        this.itemAddTarea.setOnAction(e -> {
+    this.navigation.Navigate(ScreenEnum.AñadirTareas);
+});
         
-        System.out.println("iniciado");
+        this.itemVerTareas.setOnAction(e->{
+        this.navigation.Navigate(ScreenEnum.GestorTareas);
+        
+        });
+
             /**
              * Al pulsar el boton de añadir Tarea tendremos que comprobar que los campos esten completos si no nos dara falso
              * y no podremos añadir la tarea+

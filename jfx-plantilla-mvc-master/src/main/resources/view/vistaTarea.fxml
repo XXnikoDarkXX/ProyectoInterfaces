@@ -15,11 +15,12 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <MenuBar BorderPane.alignment="CENTER">
+      <MenuBar fx:id="menu" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu fx:id="menuVentana" mnemonicParsing="false" text="Ventanas">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="itemAddTarea" mnemonicParsing="false" text="Añadir Tarea" />
+                  <MenuItem fx:id="itemVerTareas" mnemonicParsing="false" text="Ver Tareas" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Tarea;
@@ -37,16 +38,30 @@ public class GestorTareas {
 
     @FXML
     private Button btnCargaTareas;
-    
+
     @FXML
     private TextField txtTitulo;
-    
+
     @FXML
     private TextArea txtContenido;
-    
+
     @FXML
     private DatePicker fTarea;
+    @FXML
+    private MenuItem itemAddTareas;
+    @FXML
+    private MenuItem itemVerTareas;
+
     public void initialize() {
+
+        this.itemAddTareas.setOnAction(eh -> {
+            this.navigation.Navigate(ScreenEnum.AñadirTareas);
+
+        });
+
+        this.itemVerTareas.setOnAction(eh -> {
+            this.navigation.Navigate(ScreenEnum.GestorTareas);
+        });
 
         btnCargaTareas.setOnAction((actionEvent) -> {
             ArrayList<Tarea> lista = new ArrayList<Tarea>();
@@ -72,13 +87,13 @@ public class GestorTareas {
 
         comboTareas.valueProperty().addListener((ov, p1, p2) -> {
             System.out.println("Nueva Selección: " + p2);
-           String tituloTarea=p2.toString();
-            Tarea tarea=new Tarea();
-       tarea=    baseDatos.devuelveTarea(tituloTarea);
+            String tituloTarea = p2.toString();
+            Tarea tarea = new Tarea();
+            tarea = baseDatos.devuelveTarea(tituloTarea);
             this.txtTitulo.setText(tarea.getNombreTarea());
             this.txtContenido.setText(tarea.getContenidoTarea());
-           LocalDate fecha=LocalDate.parse(tarea.getFechaTarea());
-           this.fTarea.setValue(fecha);
+            LocalDate fecha = LocalDate.parse(tarea.getFechaTarea());
+            this.fTarea.setValue(fecha);
         });
 
         /*comboTareas.setOnAction((event) -> {
@@ -88,7 +103,6 @@ public class GestorTareas {
             System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
             System.out.println("   ComboBox.getValue(): " + comboTareas.getValue());
         });*/
-
     }
 
     public void setBaseDatos(BaseDatos baseDatos) {
@@ -118,8 +132,5 @@ public class GestorTareas {
     public void setfTarea(DatePicker fTarea) {
         this.fTarea = fTarea;
     }
-    
-    
-    
 
 }
