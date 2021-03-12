@@ -3,7 +3,7 @@ import controller.ControladorAñadirTarea;
 import controller.ControladorLogin;
 import controller.GestorTareas;
 import controller.Pantalla;
-import controller.PersonController;
+
 import controller.ScreenEnum;
 import java.io.IOException;
 import javafx.application.Application;
@@ -16,7 +16,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Login;
-import model.Person;
+
 import model.Tarea;
 import repositorio.BaseDatos;
 
@@ -32,7 +32,7 @@ public class App extends Application {
                 exitApplication(windowEvent);
             });
             var navigation = wireScreens(stage);//creamoos un objeto de Tipo Pantalla y le pasamos el stage
-            navigation.Navigate(ScreenEnum.AñadirTareas);//le metemos el login
+            navigation.Navigate(ScreenEnum.Login);//le metemos el login
 
        
 

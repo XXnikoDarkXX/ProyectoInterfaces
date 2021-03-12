@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,6 +16,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -43,7 +45,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="txtContenido" layoutX="57.0" layoutY="208.0" prefHeight="117.0" prefWidth="325.0" promptText="Contenido de la Tarea" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="208.0" />
-            <TextField fx:id="txtTitulo" layoutX="57.0" layoutY="153.0" prefHeight="28.0" prefWidth="295.0" promptText="Nombre de la Tarea" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="153.0" />
+            <TextField fx:id="txtTitulo" editable="false" layoutX="57.0" layoutY="153.0" prefHeight="28.0" prefWidth="295.0" promptText="Nombre de la Tarea" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="153.0" />
             <Button fx:id="btnCargaTareas" layoutX="175.0" layoutY="38.0" mnemonicParsing="false" text="Cargar Tareas" />
             <ComboBox fx:id="comboTareas" layoutX="167.0" layoutY="76.0" prefHeight="27.0" prefWidth="215.0" visibleRowCount="1" />
             <Label layoutX="25.0" layoutY="76.0" text="Elije la tarea a mostrar">
@@ -76,6 +78,16 @@
                   <Insets left="10.0" top="30.0" />
                </VBox.margin>
             </ImageView>
+            <RadioButton fx:id="rdActualizar" mnemonicParsing="false" selected="true" text="Actualizar" />
+            <RadioButton fx:id="rdEliminar" mnemonicParsing="false" text="Eliminar" />
+            <Button fx:id="btnTarea" mnemonicParsing="false" prefHeight="32.0" prefWidth="126.0" text="Confirmar">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </right>

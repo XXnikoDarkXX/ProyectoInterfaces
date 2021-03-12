@@ -18,7 +18,10 @@ public class Pantalla implements INavigation {
 
     private final HashMap<ScreenEnum, Scene> scenes;//hash donde almacenamos las diferentes escenas con una id
     private final Stage stage;//stage
-
+    /**
+     * Constructor de Pantalla con todos sus parametros
+     * @param stage  escena donde metemos las pantallas
+     */
     public Pantalla(Stage stage) {
         this.scenes = new HashMap<>();//inicializamos el hashmap
         this.stage = stage;//metemos a nuestro estage el parametro
@@ -44,7 +47,10 @@ public class Pantalla implements INavigation {
         stage.setScene(scene);
         stage.show();
     }
-    
+    /**
+     * Funcion para hacer visible
+     * @return  booleano a falso
+     */
     public boolean esVisible(){
         boolean comprobacion=false;
         

@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Login;
@@ -40,6 +41,8 @@ public class ControladorLogin {
     private PasswordField txtPassword;
     @FXML
     private Label lblLogin;
+    @FXML
+    private Label labelSegundo;
 
     /**
      * Constructor login vacio
@@ -51,14 +54,19 @@ public class ControladorLogin {
     }
 
     public void initialize() {
+        //Aqui uso biding
+       labelSegundo.textProperty().bind(txtUsuario.textProperty());//En el label segundo mediante el textProperty
+       //le metemos el usuario que escribamos en el txtUsuario (campo del usuario)
+       
         btnLogin.setOnAction((actionEvent) -> {
             login.setUsername(txtUsuario.getText());
             login.setPassword(txtPassword.getText());
               //Si ponemos 
+             lblLogin=new Label();
+                  
             if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
 
-                //try {
-
+               
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Gestor de Tareas");
                     alert.setHeaderText(null);
@@ -66,31 +74,7 @@ public class ControladorLogin {
 
                     alert.showAndWait();
                            this.navigation.Navigate(ScreenEnum.AñadirTareas);
-
-              /*      var fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/view/vistaTarea.fxml"));
-                    var controladorTarea = new ControladorAñadirTarea(new Tarea());
-                    fxmlLoader.setController(controladorTarea);
-                  
-                    var root = (Pane) fxmlLoader.load();
                       
-                    var scene = new Scene(root);
-
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-     
-                    stage.show();
-            
-          
-            
-            
-                    stage.setOnCloseRequest(e -> controladorTarea.closeWindows());
-
-                    Stage myStage = (Stage) this.btnLogin.getScene().getWindow();
-                    myStage.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ControladorLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
 
             }else{
                 lblLogin.setText("Error!!");

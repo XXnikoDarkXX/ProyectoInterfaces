@@ -10,12 +10,15 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import model.Tarea;
 import repositorio.BaseDatos;
 
@@ -51,9 +54,20 @@ public class GestorTareas {
     private MenuItem itemAddTareas;
     @FXML
     private MenuItem itemVerTareas;
+    @FXML
+    private Button btnTarea;
+
+    @FXML
+    private RadioButton rdActualizar;
+    @FXML
+    private RadioButton rdEliminar;
+
+    private ToggleGroup gp;
 
     public void initialize() {
-
+        gp = new ToggleGroup();
+        rdActualizar.setToggleGroup(gp);
+        rdEliminar.setToggleGroup(gp);
         this.itemAddTareas.setOnAction(eh -> {
             this.navigation.Navigate(ScreenEnum.AñadirTareas);
 
@@ -63,30 +77,40 @@ public class GestorTareas {
             this.navigation.Navigate(ScreenEnum.GestorTareas);
         });
 
-        btnCargaTareas.setOnAction((actionEvent) -> {
-            ArrayList<Tarea> lista = new ArrayList<Tarea>();
-            lista = baseDatos.todasTareas();
+        btnTarea.setOnAction((actionEvent) -> {
+            if (rdActualizar.isSelected()) {
+                Tarea actualizada = new Tarea(txtTitulo.getText(), txtContenido.getText(), this.fTarea.getValue().toString());
+                baseDatos.actualizarTarea(actualizada);
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Gestor Tareas");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Tarea Actualizada :D");
 
-            comboTareas.setVisible(false);
-
-            ObservableList listaCombo = FXCollections.observableArrayList();
-
-            for (int i = 0; i < lista.size(); i++) {
-                //listaCombo.add(lista.get(i).getNombreTarea());
-                System.out.println(lista.get(i).getNombreTarea());
-                comboTareas.getItems().add(lista.get(i).getNombreTarea());
-
+                    alert.showAndWait();
+            }else if(rdEliminar.isSelected()){
+         Tarea paraEliminar = new Tarea(txtTitulo.getText(), txtContenido.getText(), this.fTarea.getValue().toString());
+            baseDatos.eliminarTarea(paraEliminar);
+            cargarTareas();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Gestor Tareas");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Tarea Eliminada");
+                    alert.showAndWait();
+                    
             }
+        });
 
-            // comboTareas.setItems(listaCombo);
+        btnCargaTareas.setOnAction((actionEvent) -> {
+           cargarTareas();
+
             comboTareas.setVisible(true);
-            System.out.println("que pasa");
+
         });
 
         comboTareas.setOnAction(e -> System.out.println("Action Nueva Selección: " + comboTareas.getValue()));
 
         comboTareas.valueProperty().addListener((ov, p1, p2) -> {
-            System.out.println("Nueva Selección: " + p2);
+            
             String tituloTarea = p2.toString();
             Tarea tarea = new Tarea();
             tarea = baseDatos.devuelveTarea(tituloTarea);
@@ -96,13 +120,6 @@ public class GestorTareas {
             this.fTarea.setValue(fecha);
         });
 
-        /*comboTareas.setOnAction((event) -> {
-            int selectedIndex = comboTareas.getSelectionModel().getSelectedIndex();
-            Object selectedItem = comboTareas.getSelectionModel().getSelectedItem();
-
-            System.out.println("Selection made: [" + selectedIndex + "] " + selectedItem);
-            System.out.println("   ComboBox.getValue(): " + comboTareas.getValue());
-        });*/
     }
 
     public void setBaseDatos(BaseDatos baseDatos) {
@@ -131,6 +148,23 @@ public class GestorTareas {
 
     public void setfTarea(DatePicker fTarea) {
         this.fTarea = fTarea;
+    }
+    
+    
+    public void cargarTareas(){
+          ArrayList<Tarea> lista = new ArrayList<Tarea>();
+            lista = baseDatos.todasTareas();
+
+            
+
+            ObservableList listaCombo = FXCollections.observableArrayList();
+                comboTareas.getItems().clear();
+            for (int i = 0; i < lista.size(); i++) {
+                //listaCombo.add(lista.get(i).getNombreTarea());
+               
+                comboTareas.getItems().add(lista.get(i).getNombreTarea());
+
+            }
     }
 
 }
