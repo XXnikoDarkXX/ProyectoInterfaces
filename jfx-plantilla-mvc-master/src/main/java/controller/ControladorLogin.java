@@ -24,14 +24,14 @@ import javafx.stage.Stage;
 import model.Login;
 import model.Tarea;
 
-
 /**
  *
  * @author nicoc
  */
 public class ControladorLogin {
+
     private Pantalla navigation;
-    
+
     private Login login;
     @FXML
     private Button btnLogin;
@@ -47,36 +47,34 @@ public class ControladorLogin {
     /**
      * Constructor login vacio
      */
-    public ControladorLogin(Login login,Pantalla navigation) {
+    public ControladorLogin(Login login, Pantalla navigation) {
         this.login = login;
-        this.navigation=navigation;
+        this.navigation = navigation;
 
     }
 
     public void initialize() {
         //Aqui uso biding
-       labelSegundo.textProperty().bind(txtUsuario.textProperty());//En el label segundo mediante el textProperty
-       //le metemos el usuario que escribamos en el txtUsuario (campo del usuario)
-       
+        labelSegundo.textProperty().bind(txtUsuario.textProperty());//En el label segundo mediante el textProperty
+        //le metemos el usuario que escribamos en el txtUsuario (campo del usuario)
+
         btnLogin.setOnAction((actionEvent) -> {
             login.setUsername(txtUsuario.getText());
             login.setPassword(txtPassword.getText());
-              //Si ponemos 
-             lblLogin=new Label();
-                  
+            //Si ponemos 
+            lblLogin = new Label();
+
             if (login.getUsername().equals("admin") && login.getPassword().equals("admin")) {
 
-               
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Gestor de Tareas");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Te has logueado");
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Gestor de Tareas");
+                alert.setHeaderText(null);
+                alert.setContentText("Te has logueado");
 
-                    alert.showAndWait();
-                           this.navigation.Navigate(ScreenEnum.AñadirTareas);
-                      
+                alert.showAndWait();
+                this.navigation.Navigate(ScreenEnum.AñadirTareas);
 
-            }else{
+            } else {
                 lblLogin.setText("Error!!");
             }
         });

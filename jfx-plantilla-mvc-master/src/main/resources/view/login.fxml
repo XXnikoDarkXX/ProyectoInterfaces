@@ -10,14 +10,14 @@
 <AnchorPane id="AnchorPane" prefHeight="437.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <children>
 <Button fx:id="btnLogin" layoutX="226.0" layoutY="222.0" text="Login" />
-<Label fx:id="labelSegundo" layoutX="223.0" layoutY="87.0" prefHeight="17.0" prefWidth="149.0">
+<Label fx:id="labelSegundo" layoutX="223.0" layoutY="87.0" prefHeight="17.0" prefWidth="149.0" textFill="#ff2929">
          <font>
             <Font size="14.0" />
          </font></Label>
-<TextField fx:id="txtUsuario" layoutX="222.0" layoutY="125.0" />
+<TextField fx:id="txtUsuario" layoutX="222.0" layoutY="125.0" promptText="usuario" />
 <Label layoutX="129.0" layoutY="129.0" text="Usuario" />
 <Label layoutX="129.0" layoutY="179.0" text="Password" />
-<PasswordField fx:id="txtPassword" layoutX="222.0" layoutY="175.0" />
+<PasswordField fx:id="txtPassword" layoutX="222.0" layoutY="175.0" promptText="password" />
       <Label fx:id="lblLogin" layoutX="240.0" layoutY="35.0" text="Bienvenido">
          <font>
             <Font name="Lucida Sans Unicode" size="24.0" />

@@ -24,7 +24,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Tarea;
 import repositorio.BaseDatos;
-
 /**
  *
  * @author nicoc
@@ -34,11 +33,19 @@ public class ControladorAñadirTarea {
     Tarea tarea;
     private BaseDatos baseDatos;
     private Pantalla navigation;
-    public ControladorAñadirTarea(Tarea tarea,Pantalla navigation,BaseDatos baseDatos) {
+
+    /**
+     * Controlador para añadir tareas¡
+     *
+     * @param tarea tarea
+     * @param navigation navegacion
+     * @param baseDatos base de datos
+     */
+    public ControladorAñadirTarea(Tarea tarea, Pantalla navigation, BaseDatos baseDatos) {
         this.tarea = tarea;
-    
-        this.navigation=navigation;
-        this.baseDatos=baseDatos;
+
+        this.navigation = navigation;
+        this.baseDatos = baseDatos;
 
     }
     @FXML
@@ -57,48 +64,47 @@ public class ControladorAñadirTarea {
     private MenuItem itemAddTarea;
     @FXML
     private MenuItem itemVerTareas;
+
     public void initialize() {
-    
-       
+
         this.itemAddTarea.setOnAction(e -> {
-    this.navigation.Navigate(ScreenEnum.AñadirTareas);
-});
-        
-        this.itemVerTareas.setOnAction(e->{
-        this.navigation.Navigate(ScreenEnum.GestorTareas);
-        
+            this.navigation.Navigate(ScreenEnum.AñadirTareas);
         });
 
-            /**
-             * Al pulsar el boton de añadir Tarea tendremos que comprobar que los campos esten completos si no nos dara falso
-             * y no podremos añadir la tarea+
-             */
+        this.itemVerTareas.setOnAction(e -> {
+            this.navigation.Navigate(ScreenEnum.GestorTareas);
+
+        });
+
+        /**
+         * Al pulsar el boton de añadir Tarea tendremos que comprobar que los
+         * campos esten completos si no nos dara falso y no podremos añadir la
+         * tarea+
+         */
         btnTarea.setOnAction((actionEvent) -> {
             boolean comprobacion = false;
             if ((txtContenido.getText().equals("") || txtTitulo.getText().equals("") || fTarea.getValue() == null || txtContenido.getText().equals(""))) {
                 comprobacion = false;
 
             } else {
-
                 comprobacion = true;
             }
-
             if (comprobacion) {
-                 Tarea tareados=new Tarea();
+                Tarea tareados = new Tarea();
                 tareados.setNombreTarea(txtTitulo.getText());
                 tareados.setFechaTarea(fTarea.getValue().toString());
                 tareados.setContenidoTarea(txtContenido.getText());
-                tarea=tareados;
+                tarea = tareados;
                 baseDatos.AñadirTarea(tarea);
-              
-                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Gestor de Tareas");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Tarea Añadida");
-                    alert.showAndWait();
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Gestor de Tareas");
+                alert.setHeaderText(null);
+                alert.setContentText("Tarea Añadida");
+                alert.showAndWait();
             }
         });
-           //Limpiamos todos los campos
+        //Limpiamos todos los campos
         btnBorrar.setOnAction((actionEvent) -> {
             txtContenido.setText("");
             txtTitulo.setText("");
@@ -106,29 +112,20 @@ public class ControladorAñadirTarea {
 
         });
 
-          irGestorTareas.setOnAction((actionEvent) -> {
-         
+        irGestorTareas.setOnAction((actionEvent) -> {
 
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Gestor de Tareas");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Vamos a mostrar las tareas");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Gestor de Tareas");
+            alert.setHeaderText(null);
+            alert.setContentText("Vamos a mostrar las tareas");
 
-                    alert.showAndWait();
-                        this.navigation.Navigate(ScreenEnum.GestorTareas);
-                 
-              //      stage.setOnCloseRequest(e -> controladorTarea.closeWindows());
+            alert.showAndWait();
+            this.navigation.Navigate(ScreenEnum.GestorTareas);
 
-                  //  Stage myStage = (Stage) this.btnBorrar.getScene().getWindow();
-                 //   myStage.close();
-             
-            
-         
-    });
-                  
-                  }
+        });
 
-    
+    }
+
     public void closeWindows() {
 
     }
